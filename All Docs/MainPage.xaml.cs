@@ -42,6 +42,7 @@ namespace All_Docs
         public MainPage()
         {
             this.InitializeComponent();
+            LoadContent();
             roamingSettings = ApplicationData.Current.RoamingSettings;
             //roamingSettings.DeleteContainer("Accounts");
             Current = this;
@@ -54,6 +55,57 @@ namespace All_Docs
                 SettingsPane.GetForCurrentView().CommandsRequested += onCommandsRequested;
                 this.isEventRegistered = true;
             }
+        }
+
+        void LoadContent()
+        {
+            if (roamingSettings.Containers.ContainsKey("Accounts"))
+            {
+                var values = roamingSettings.Containers["Accounts"].Values.ToList();
+                foreach (var keyValuePair in values)
+                {
+                    ApplicationDataCompositeValue composite = (ApplicationDataCompositeValue)keyValuePair.Value;
+                    string login = "" + composite["Login"];
+                    string token = "" + composite["AccessToken"];
+
+                    switch("" + composite["Type"]){
+                        case "0":
+                            LoadSkyDriveContent(login, token);
+                            break;
+                        case "1":
+                            LoadGoogleDriveContent(login, token);
+                            break;
+                        case "2":
+                            LoadDropboxContent(login, token);
+                            break;
+                        case "3":
+                            LoadBoxContent(login, token);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+
+        void LoadSkyDriveContent(string login, string token)
+        {
+
+        }
+
+        void LoadGoogleDriveContent(string login, string token)
+        {
+
+        }
+
+        void LoadDropboxContent(string login, string token)
+        {
+
+        }
+
+        void LoadBoxContent(string login, string token)
+        {
+
         }
 
         void OnWindowSizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)

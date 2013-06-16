@@ -62,7 +62,7 @@ namespace All_Docs
                     
                     TextBlock type = new TextBlock();
                     string typeInt = "" + composite["Type"];
-                    type.Text = typeInt == "0" ? "SkyDrive" : typeInt =="1" ? "Google Drive" : typeInt=="2" ? "Dropbox" : "Box";
+                    type.Text = typeInt == "0" ? "SkyDrive" : typeInt =="1" ? "Google Drive" : typeInt=="2" ? "Dropbox" : typeInt == "3" ? "Box" : "";
                     type.Margin = new Thickness(10, 10, 0, 0);
                     type.FontSize = 15;
                     type.Width = 100;
